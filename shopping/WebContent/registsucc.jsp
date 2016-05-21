@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>主页</h1>
-<h2>当前登录用户<%= session.getAttribute("loginuser") %>></h2>
+<h1>会员注册页面</h1>
+<hr />
+	<h2>注册成功 请<a href="${pageContext.request.contextPath }/login.jsp">登录</a></h2>
 </body>
 </html>

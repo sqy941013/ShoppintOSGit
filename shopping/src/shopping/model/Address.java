@@ -77,5 +77,10 @@ public class Address {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+	@Override
+	public String toString() {
+		return "Address [addressId=" + addressId + ", consignee=" + consignee + ", consigneePhone=" + consigneePhone
+				+ ", province=" + province + ", city=" + city + ", country=" + country + ", desc=" + desc + "]";
+	}
 	
 }
