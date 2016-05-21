@@ -49,5 +49,30 @@ public class MemberService {
 		return memberList;
 	}
 	
+	/**
+	 * 用户注册的方法
+	 * @param member 要注册的用户
+	 * @return
+	 */
+	public int regist(Member member){
+		int id=-1;
+		try {
+			//1.获取数据库连接 
+			conn = ConnectionManager.getConnection();
+			//2.调用DAO的方法保存用户
+			id=memberDAO.add(conn, member);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			//3.关闭数据库连接 释放资源
+			ConnectionManager.free(conn);
+		}
+		
+		//4.返回处理结果
+		return id;
+	}
+	
 	
 }

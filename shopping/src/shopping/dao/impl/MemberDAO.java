@@ -16,15 +16,9 @@ public class MemberDAO implements IDAO<Member>{
 	private DBHelper<Member> dh=new DBHelper<Member>();
 	@Override
 	public int add(Connection conn, Member t) throws SQLException {
-		// TODO Auto-generated method stub
-		sql="insert into MEMBER(MEMBERID,USERNAME,PASSWORD,"+
-				"REALNAME,PHONE,HEADERIMG,REGNO,GENDER,AGE,REGISTTIME) values(?,?,?,?,?,?,?,?,?,?)";
-				dh.excuteInsert(conn, sql, t.getMemberId(),t.getUsername(),
-						t.getPassword(),t.getRealName(),t.getPhone(),
-						t.getHeaderimg(),t.getRegNo(),t.getGender(),
-						t.getAge(),t.getRegistTime());
+		sql = "insert into MEMBER(USERNAME, PASSWORD, REALNAME,HEADERIMG) values(?,?,?,?)";
 				
-		return 0;
+		return dh.excuteInsert(conn, sql, t.getUsername(),t.getPassword(),t.getRealName(),"headerImg/25.png");
 	}
 
 	@Override

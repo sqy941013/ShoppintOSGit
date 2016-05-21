@@ -53,6 +53,14 @@ public class Member {
 		this.username = username;
 		this.password = password;
 	}
+	
+	
+	public Member(String username, String password, String realName) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.realName = realName;
+	}
 	public int getMemberId() {
 		return memberId;
 	}
@@ -122,9 +130,16 @@ public class Member {
 	public String getHeaderimg()
 	{
 		return this.headerimg;
+		
+	}
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", username=" + username + ", password=" + password + ", realName="
+				+ realName + ", phone=" + phone + ", headerimg=" + headerimg + ", regNo=" + regNo + ", gender=" + gender
+				+ ", age=" + age + ", registTime=" + registTime + ", addressList=" + addressList + "]";
 	}
 	
-
+	
 	
 	
 }
