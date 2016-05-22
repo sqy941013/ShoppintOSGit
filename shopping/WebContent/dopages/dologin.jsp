@@ -19,7 +19,7 @@
 	if(memberList!=null&&memberList.size( ) > 0){
 		//登录成功
 		//4.1记录登录用户
-		session.setAttribute("loginuser",memberList.get(0));
+		session.setAttribute("loginuser",memberList.get(0).getUsername());
 		//4.2跳转到会员主页(请求重定向跳转)
 		response.sendRedirect("../front/index.jsp");
 	} else {
