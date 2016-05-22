@@ -17,8 +17,9 @@ public class Goods {
 	private int stockCount;//商品库存
 	private boolean isValible;//是否可以购买
 	private String goodDesc;//商品描述
+	private int goodsTypeId;//商品类型
 	
-	public Goods(int goodId, String goodName, double subPrice, int stockCount, boolean isValible, String goodDesc) {
+	public Goods(int goodId, String goodName, double subPrice, int stockCount, boolean isValible, String goodDesc,int goodsTypeId) {
 		super();
 		this.goodId = goodId;
 		this.goodName = goodName;
@@ -26,6 +27,7 @@ public class Goods {
 		this.stockCount = stockCount;
 		this.isValible = isValible;
 		this.goodDesc = goodDesc;
+		this.setGoodsTypeId(goodsTypeId);
 	}
 
 	public Goods() {
@@ -68,6 +70,14 @@ public class Goods {
 	}
 	public void setGoodDesc(String goodDesc) {
 		this.goodDesc = goodDesc;
+	}
+
+	public int getGoodsTypeId() {
+		return goodsTypeId;
+	}
+
+	public void setGoodsTypeId(int goodsTypeId) {
+		this.goodsTypeId = goodsTypeId;
 	}
 	
 	

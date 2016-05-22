@@ -29,7 +29,7 @@ public class GoodsMapper implements IRowMapper<Goods>{
 		goods.setStockCount(rs.getInt("STOCKCOUNT"));
 		goods.setIsValible(rs.getBoolean("ISVALIBLE"));
 		goods.setGoodDesc(rs.getString("GOODSDESC"));
-		
+		goods.setGoodsTypeId(rs.getInt("GOODSTYPEID"));
 		return goods;
 	}
 

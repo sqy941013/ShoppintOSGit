@@ -1,5 +1,8 @@
+<%@page import="shopping.service.GoodsTypeService"%>
+<%@page import="shopping.model.GoodsType" %>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="shopping.model.Member" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
@@ -67,12 +70,18 @@
         <nav class="primary">
           <ul>
             <li class="curent"><a href="${pageContext.request.contextPath}/front/index.jsp">首页</a></li>
-            <li><a href="catalog_grid.html">手机</a></li>
-            <li><a href="catalog_grid.html">电脑</a></li>
-            <li><a href="catalog_grid.html">化妆品</a></li>
-            <li><a href="catalog_grid.html">食品</a></li>
-            <li><a href="catalog_grid.html">汽车</a></li>
-			<li><a href="catalog_grid.html">玩具</a></li>
+            <%
+            	GoodsTypeService goodsTypeService=new GoodsTypeService();
+        		List<GoodsType> goodsTypes;
+        		
+        		goodsTypes=goodsTypeService.getTypes();
+        		
+        		for(int i=0;i<goodsTypes.size();i++){
+        			out.print("<li><a href=\"catalog_grid.html\">"+goodsTypes.get(i).getGoodsType()+"</a></li>");
+        		}
+            %>
+            <!--li><a href="catalog_grid.html">手机</a></li-->
+            
             
           </ul>
         </nav><!-- .primary -->
