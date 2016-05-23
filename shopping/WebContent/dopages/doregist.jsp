@@ -50,7 +50,10 @@
 		response.sendRedirect("../registsucc.jsp");
 	}else{
 		//注册失败 跳转回注册页面  TDOO 原因未写
-		
+		if(id==-2){
+			request.setAttribute("regerror", "用户名已存在");
+			request.getRequestDispatcher("../regist.jsp").forward(request,response);
+		}
 		
 	}
 	//4.根据注册结果跳转到不同页面

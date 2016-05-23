@@ -38,6 +38,7 @@ public class MemberService {
 		try {
 			conn=ConnectionManager.getConnection();
 			memberList=memberDAO.findByCondition(conn, FindType.MEMBER_USERNAME_PASSWORD, member.getUsername(),member.getPassword());
+			//System.out.println(memberList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,9 +47,26 @@ public class MemberService {
 			ConnectionManager.free(conn);
 		}
 		//返货查询到的数据
+		//System.out.println("Logged IN");
 		return memberList;
 	}
 	
+	public Member modPwd(Member member,String pwd){
+		try {
+			conn=ConnectionManager.getConnection();
+			System.out.println(member);
+			memberDAO.update(conn, member);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	finally {
+			//关闭数据库连接释放资源
+			ConnectionManager.free(conn);
+		}
+		//返货查询到的数据
+		//System.out.println("PWD changed");
+		return member;
+	}
 	/**
 	 * 用户注册的方法
 	 * @param member 要注册的用户
@@ -60,6 +78,15 @@ public class MemberService {
 			//1.获取数据库连接 
 			conn = ConnectionManager.getConnection();
 			//2.调用DAO的方法保存用户
+			memberList=memberDAO.findAll(conn);
+			System.out.print(memberList);
+			for(int i=0;i<memberList.size();i++){
+				if(member.getUsername().trim().equals(memberList.get(i).getUsername().trim())){
+					
+					System.out.println("用户名已存在");
+					return -2;//-2代表用户名已存在
+				}
+			}
 			id=memberDAO.add(conn, member);
 			
 		} catch (SQLException e) {

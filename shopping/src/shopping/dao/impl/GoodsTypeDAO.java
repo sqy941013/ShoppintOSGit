@@ -72,6 +72,9 @@ public class GoodsTypeDAO implements IDAO<GoodsType>{
 	@Override
 	public List<GoodsType> findByCondition(Connection conn, FindType type, Object... objects) throws SQLException {
 		// TODO Auto-generated method stub
+		if(type==FindType.TYPENAME){
+			return findByTypeName(conn, type, objects);
+		}
 		return null;
 	}
 
@@ -79,6 +82,11 @@ public class GoodsTypeDAO implements IDAO<GoodsType>{
 	public int deleteByCondition(Connection conn, DeleteType type, Object... objects) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	private List<GoodsType> findByTypeName(Connection conn, FindType type, Object... objects) throws SQLException{
+		sql="select * from GOODSTYPE where GOODSTYPE=?";
+		return dh.executeQuery(conn, sql, new GoodsTypeMapper(), objects);
 	}
 
 }
