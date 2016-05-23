@@ -7,6 +7,7 @@ import java.util.List;
 import shopping.dao.IDAO;
 import shopping.dbhelper.DBHelper;
 import shopping.mapper.impl.GoodsMapper;
+import shopping.mapper.impl.MemberMapper;
 import shopping.model.Goods;
 import shopping.utils.DeleteType;
 import shopping.utils.FindType;
@@ -28,10 +29,10 @@ public class GoodsDAO implements IDAO<Goods>{
 	@Override
 	public int add(Connection conn, Goods t) throws SQLException {
 		// TODO Auto-generated method stub
-		sql="insert into GOODS(GOODSID,GOODSNAME,SUBPRICE,STOCKCOUNT,ISVALIBLE,GOODSDESC)"+
-		"values(?,?,?,?,?,?)";
+		sql="insert into GOODS(GOODSID,GOODSNAME,SUBPRICE,STOCKCOUNT,ISVALIBLE,GOODSDESC,GOODSTYPEID)"+
+		"values(?,?,?,?,?,?,?)";
 				dh.excuteInsert(conn, sql,t.getGoodId(),t.getGoodName(),
-						t.getSubPrice(),t.getStockCount(),t.getIsValible());		
+						t.getSubPrice(),t.getStockCount(),t.getIsValible(),t.getGoodsTypeId());		
 		return 0;
 	}
 
@@ -47,9 +48,9 @@ public class GoodsDAO implements IDAO<Goods>{
 	public int update(Connection conn, Goods t) throws SQLException {
 		// TODO Auto-generated method stub
 		sql="update GOODS set GOODSNAME=?, SUBPRICE=?,"+
-				"STOCKCOUNT=?, ISVALIBLE=?, GOODSDESC=? where GOODSID="+t.getGoodId();
+				"STOCKCOUNT=?, ISVALIBLE=?, GOODSDESC=?, GOODSTYPEID=? where GOODSID="+t.getGoodId();
 				dh.excuteSQL(conn, sql,t.getGoodName(),t.getSubPrice(),
-						t.getStockCount(),t.getIsValible(),t.getGoodDesc());
+						t.getStockCount(),t.getIsValible(),t.getGoodDesc(),t.getGoodsTypeId());
 				
 		return 0;
 	}
@@ -73,6 +74,9 @@ public class GoodsDAO implements IDAO<Goods>{
 	@Override
 	public List<Goods> findByCondition(Connection conn, FindType type, Object... objects) throws SQLException {
 		// TODO Auto-generated method stub
+		if(type==FindType.GOODSTYPE){
+			return this.findByGoodsTypeId(conn,FindType.GOODSTYPE,objects);
+		}
 		return null;
 	}
 
@@ -80,6 +84,11 @@ public class GoodsDAO implements IDAO<Goods>{
 	public int deleteByCondition(Connection conn, DeleteType type, Object... objects) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	private List<Goods> findByGoodsTypeId(Connection conn, FindType type, Object... objects) throws SQLException{
+		sql="select * from GOODS where GOODSTYPEID=?";
+		return dh.executeQuery(conn, sql, new GoodsMapper(), objects);
 	}
 
 }

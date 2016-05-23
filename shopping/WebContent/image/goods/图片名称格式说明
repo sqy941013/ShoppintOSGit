@@ -1,0 +1,5 @@
+商品图片命名规范
+所有商品的图片都存放在webcontent->image->goods中
+商品的分类是依据数据库中goodstype而定
+图片名称是goodsid
+图片大小 220*220
